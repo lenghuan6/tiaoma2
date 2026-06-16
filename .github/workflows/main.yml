@@ -30,7 +30,7 @@ jobs:
             -exportOptionsPlist "./exportOptions.plist"
 
       - name: 📤 上传IPA
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 条码输入法-Unsigned-IPA
           path: ./build/*.ipa
