@@ -1,0 +1,349 @@
+name: Build Unsigned IPA for TrollStore
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create Xcode Project (Simple Scheme)
+        run: |
+          cat > tiaoma2.xcodeproj/project.pbxproj << 'EOF'
+{
+  archiveVersion = 1;
+  classes = {
+  };
+  objectVersion = 56;
+  objects = {
+    13B076A81AE870075C343CDA = {
+      isa = PBXProject;
+      attributes = {
+        BuildIndependentTargetsInParallel = YES;
+      };
+      buildConfigurationList = 13B076AF1AE870075C343CDA;
+      compatibilityVersion = "Xcode 14.0";
+      developmentRegion = zh-CN;
+      hasScannedForEncodings = 0;
+      knownRegions = (
+        zh-CN,
+        en,
+      );
+      mainGroup = 13B0769F1AE870075C343CDA;
+      productRefGroup = 13B076A41AE870075C343CDA;
+      projectDirPath = "";
+      projectRoot = "";
+      targets = (
+        13B076B11AE870075C343CDA,
+        13B076BC1AE870075C343CDA,
+      );
+    };
+    13B0769F1AE870075C343CDA = {
+      isa = PBXGroup;
+      children = (
+        13B076A01AE870075C343CDA,
+        13B076A11AE870075C343CDA,
+        13B076A21AE870075C343CDA,
+        13B076A31AE870075C343CDA,
+        13B076A71AE870075C343CDA,
+      );
+      name = tiaoma2;
+      sourceTree = "<group>";
+    };
+    13B076A01AE870075C343CDA = {
+      isa = PBXGroup;
+      name = BarcodeKeyboard;
+      sourceTree = "<group>";
+      children = (
+        13B076A82AE870075C343CDA,
+        13B076A83AE870075C343CDA,
+        13B076A84AE870075C343CDA,
+      );
+    };
+    13B076A11AE870075C343CDA = {
+      isa = PBXGroup;
+      name = BarcodeKeyboardExtension;
+      sourceTree = "<group>";
+      children = (
+        13B076A85AE870075C343CDA,
+        13B076A86AE870075C343CDA,
+        13B076A87AE870075C343CDA,
+      );
+    };
+    13B076A21AE870075C343CDA = {
+      isa = PBXGroup;
+      name = Shared;
+      sourceTree = "<group>";
+      children = (
+        13B076A88AE870075C343CDA,
+        13B076A89AE870075C343CDA,
+      );
+    };
+    13B076A31AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = text.plist.xml;
+      name = exportOptions.plist;
+      path = exportOptions.plist;
+      sourceTree = "<group>";
+    };
+    13B076A41AE870075C343CDA = {
+      isa = PBXGroup;
+      name = Products;
+      sourceTree = "<group>";
+    };
+    13B076A71AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = text;
+      name = README.md;
+      path = README.md;
+      sourceTree = "<group>";
+    };
+    13B076A82AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = sourcecode.swift;
+      name = App.swift;
+      path = BarcodeKeyboard/App.swift;
+      sourceTree = "<group>";
+    };
+    13B076A83AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = sourcecode.swift;
+      name = ContentView.swift;
+      path = BarcodeKeyboard/ContentView.swift;
+      sourceTree = "<group>";
+    };
+    13B076A84AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = text.plist.xml;
+      name = Info.plist;
+      path = BarcodeKeyboard/Info.plist;
+      sourceTree = "<group>";
+    };
+    13B076A85AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = sourcecode.swift;
+      name = KeyboardViewController.swift;
+      path = BarcodeKeyboardExtension/KeyboardViewController.swift;
+      sourceTree = "<group>";
+    };
+    13B076A86AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = sourcecode.swift;
+      name = ScanCameraView.swift;
+      path = BarcodeKeyboardExtension/ScanCameraView.swift;
+      sourceTree = "<group>";
+    };
+    13B076A87AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = text.plist.xml;
+      name = Info.plist;
+      path = BarcodeKeyboardExtension/Info.plist;
+      sourceTree = "<group>";
+    };
+    13B076A88AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = sourcecode.swift;
+      name = BarcodeScanner.swift;
+      path = Shared/BarcodeScanner.swift;
+      sourceTree = "<group>";
+    };
+    13B076A89AE870075C343CDA = {
+      isa = PBXFileReference;
+      fileEncoding = 4;
+      lastKnownFileType = sourcecode.swift;
+      name = ScanHistory.swift;
+      path = Shared/ScanHistory.swift;
+      sourceTree = "<group>";
+    };
+    13B076AF1AE870075C343CDA = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        13B076B01AE870075C343CDA,
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Release;
+    };
+    13B076B01AE870075C343CDA = {
+      isa = XCBuildConfiguration;
+      name = Release;
+      buildSettings = {
+        ALWAYS_SEARCH_USER_PATHS = NO;
+        CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+        CLANG_CXX_LIBRARY = "libc++";
+        CLANG_ENABLE_MODULES = YES;
+        CLANG_ENABLE_OBJC_ARC = YES;
+        CODE_SIGN_IDENTITY = "";
+        CODE_SIGNING_ALLOWED = NO;
+        CODE_SIGNING_REQUIRED = NO;
+        COMBINE_HIDPI_IMAGES = YES;
+        DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+        ENABLE_BITCODE = NO;
+        ENABLE_NS_ASSERTIONS = NO;
+        FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+        IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+        PRODUCT_BUNDLE_IDENTIFIER = com.lenghuan.tiaoma;
+        PRODUCT_NAME = "条码输入法";
+        SDKROOT = iphoneos;
+        SWIFT_VERSION = 5.0;
+        TARGETED_DEVICE_FAMILY = 1;
+      };
+    };
+    13B076B11AE870075C343CDA = {
+      isa = PBXNativeTarget;
+      buildConfigurationList = 13B076AF1AE870075C343CDA;
+      buildPhases = (
+        13B076B21AE870075C343CDA,
+        13B076B31AE870075C343CDA,
+      );
+      buildRules = (
+      );
+      dependencies = (
+        13B076BD1AE870075C343CDA,
+      );
+      name = BarcodeKeyboard;
+      productName = "条码输入法";
+      productReference = 13B076B41AE870075C343CDA;
+      productType = "com.apple.product-type.application";
+    };
+    13B076B21AE870075C343CDA = {
+      isa = PBXSourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        13B076B51AE870075C343CDA,
+        13B076B61AE870075C343CDA,
+        13B076B71AE870075C343CDA,
+        13B076B81AE870075C343CDA,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+    13B076B31AE870075C343CDA = {
+      isa = PBXResourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        13B076B91AE870075C343CDA,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+    13B076B41AE870075C343CDA = {
+      isa = PBXProductType;
+      name = "条码输入法";
+      path = "条码输入法.app";
+      sourceTree = "<built-in>";
+    };
+    13B076B51AE870075C343CDA = {
+      isa = PBXBuildFile;
+      fileRef = 13B076A82AE870075C343CDA;
+    };
+    13B076B61AE870075C343CDA = {
+      isa = PBXBuildFile;
+      fileRef = 13B076A83AE870075C343CDA;
+    };
+    13B076B71AE870075C343CDA = {
+      isa = PBXBuildFile;
+      fileRef = 13B076A88AE870075C343CDA;
+    };
+    13B076B81AE870075C343CDA = {
+      isa = PBXBuildFile;
+      fileRef = 13B076A89AE870075C343CDA;
+    };
+    13B076B91AE870075C343CDA = {
+      isa = PBXBuildFile;
+      fileRef = 13B076A84AE870075C343CDA;
+    };
+    13B076BC1AE870075C343CDA = {
+      isa = PBXNativeTarget;
+      buildConfigurationList = 13B076AF1AE870075C343CDA;
+      buildPhases = (
+        13B076BE1AE870075C343CDA,
+        13B076BF1AE870075C343CDA,
+      );
+      buildRules = (
+      );
+      dependencies = (
+      );
+      name = BarcodeKeyboardExtension;
+      productName = BarcodeKeyboardExtension;
+      productReference = 13B076C01AE870075C343CDA;
+      productType = "com.apple.product-type.app-extension";
+    };
+    13B076BD1AE870075C343CDA = {
+      isa = PBXTargetDependency;
+      target = 13B076BC1AE870075C343CDA;
+    };
+    13B076BE1AE870075C343CDA = {
+      isa = PBXSourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        13B076C11AE870075C343CDA,
+        13B076C21AE870075C343CDA,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+    13B076BF1AE870075C343CDA = {
+      isa = PBXResourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        13B076C31AE870075C343CDA,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
+    13B076C01AE870075C343CDA = {
+      isa = PBXProductType;
+      name = BarcodeKeyboardExtension;
+      path = BarcodeKeyboardExtension.appex;
+      sourceTree = "<built-in>";
+    };
+    13B076C11AE870075C343CDA = {
+      isa = PBXBuildFile;
+      fileRef = 13B076A85AE870075C343CDA;
+    };
+    13B076C21AE870075C343CDA = {
+      isa = PBXBuildFile;
+      fileRef = 13B076A86AE870075C343CDA;
+    };
+    13B076C31AE870075C343CDA = {
+      isa = PBXBuildFile;
+      fileRef = 13B076A87AE870075C343CDA;
+    };
+  };
+  rootObject = 13B076A81AE870075C343CDA;
+}
+EOF
+
+      - name: Archive App (No Code Sign)
+        run: |
+          xcodebuild archive \
+            -project tiaoma2.xcodeproj \
+            -scheme BarcodeKeyboard \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath ./build/BarcodeKeyboard.xcarchive \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Export Unsigned IPA
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath ./build/BarcodeKeyboard.xcarchive \
+            -exportPath ./build/ \
+            -exportOptionsPlist ./exportOptions.plist
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: 条码输入法_iOS16.6_TrollStore
+          path: ./build/*.ipa
